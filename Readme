@@ -1,0 +1,23 @@
+Backend for the eventual Gruew App (no one is married to this name).
+
+Instructions to run:
+0.) Fork https://github.com/greenac/Gruew.git into your github, and clone your repo onto your machine
+1.) MySql must be installed on machine.
+2.) Enter your MySql username and password into the params object in sql-connection.js.
+3.) Type: mysql -u your_username -p your_password
+4.)	At the mysql command prompt type: create database gruew;
+5.) Type: exit;
+6.) Go to the sql directory under gruew. 
+7.) Type: mysql -u your_username -p your_password gruew < db-schema.sql 
+8.) Type: npm install -- from gruew directory (the directory with package.json).
+9.) Type: nodemon server.js
+9.) Open a browser
+10.) To generate mock data type: http://localhost:9000/create-data
+11.) To see all users type: http://localhost:9000/all-users
+12.) To see all crops type: http://localhost:9000/all-crops
+13.) Feel free to break anything!
+14.) You can run from the command line (instead of useing nodemon and a browser) by placing the code you want to run in an if else statement 		in app.js.
+		An example is: 	else if (process.argv.length > 2 && process.argv[2] === 'sayhello') {
+							console.log("I'm saying hello!");
+						}
+		then from the command line in the gruew directory type: node server.js sayhello

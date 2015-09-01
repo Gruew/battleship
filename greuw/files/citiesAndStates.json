@@ -1,0 +1,34 @@
+[{
+  "city":"San Francisco",
+  "state":"Ca"
+}, {
+  "city":"Merced",
+  "state":"Ca"
+}, {
+  "city":"Atwater",
+  "state":"Ca"
+}, {
+  "city":"Los Angeles",
+  "state":"Ca"
+}, {
+  "city":"Los Banos",
+  "state":"Ca"
+}, {
+  "city":"Sacramento",
+  "state":"Ca"
+}, {
+  "city":"New York",
+  "state":"Ny"
+}, {
+  "city":"Seattle",
+  "state":"Wa"
+}, {
+  "city":"Winnemucca",
+  "state":"Nv"
+}, {
+  "city":"St Paul",
+  "state":"Minnesota"
+}, {
+  "city":"Fort Collins",
+  "state":"Colorado"
+}]

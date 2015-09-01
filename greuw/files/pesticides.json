@@ -1,0 +1,22 @@
+[{
+  "type": "natural",
+  "name": "canola oil"
+}, {
+  "type": "natural",
+  "name": "hot pepper sauce"
+}, {
+  "type": "natural",
+  "name": "baking soda"
+}, {
+  "type": "natural",
+  "name": "milk"
+}, {
+  "type": "chemical",
+  "name": "roundup"
+}, {
+  "type": "chemical",
+  "name": "spectracide"
+}, {
+  "type": "chemical",
+  "name": "raid"
+}]

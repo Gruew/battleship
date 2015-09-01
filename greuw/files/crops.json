@@ -1,0 +1,85 @@
+[{
+  "category": "corn",
+  "type": "yellow"
+}, {
+  "category": "white",
+  "type": "yellow"
+}, {
+  "category": "tomato",
+  "type": "red lady"
+}, {
+  "category": "tomato",
+  "type": "red pear"
+}, {
+  "category": "tomato",
+  "type": "yellow pear"
+}, {
+  "category": "bell pepper",
+  "type": "green"
+}, {
+  "category": "bell pepper",
+  "type": "red"
+}, {
+  "category": "bell pepper",
+  "type": "yellow"
+}, {
+  "category": "bell pepper",
+  "type": "orange"
+}, {
+  "category": "herb",
+  "type": "basil"
+}, {
+  "category": "herb",
+  "type": "oregano"
+}, {
+  "category": "herb",
+  "type": "sage"
+}, {
+  "category": "herb",
+  "type": "thyme"
+}, {
+  "category": "gourd",
+  "type": "zucchini"
+}, {
+  "category": "gourd",
+  "type": "pumpkin"
+}, {
+  "category": "gourd",
+  "type": "8 ball squash"
+}, {
+  "category": "gourd",
+  "type": "zucchini"
+}, {
+  "category": "pea",
+  "type": "snow"
+}, {
+  "category": "pea",
+  "type": "black eyed"
+}, {
+  "category": "pea",
+  "type": "long"
+}, {
+  "category": "leafy",
+  "type": "kale"
+}, {
+  "category": "leafy",
+  "type": "swiss chard"
+}, {
+  "category": "leafy",
+  "type": "cabbage"
+}, {
+  "category": "leafy",
+  "type": "red lettuce"
+}, {
+  "category": "leafy",
+  "type": "lettuce"
+}, {
+  "category": "berry",
+  "type": "strawberry"
+}, {
+  "category": "berry",
+  "type": "blackberry"
+}, {
+  "category": "berry",
+  "type": "blueberry"
+}]
