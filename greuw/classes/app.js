@@ -6,6 +6,7 @@ var RequestRouter = require('./request-router.js');
 var Constants = require('./constants');
 var DataCreator = require('./db-data-creator');
 var Logger = require('./utils/logger');
+var GetPic = require('./getpic');
 
 function start() {
     var app = express();
@@ -23,6 +24,17 @@ function start() {
     if (process.argv.length > 2 && process.argv[2] === 'createdata') {
         var dataCreator = new DataCreator(50);
         dataCreator.createInfo();
+    } else if(process.argv.length > 2 && process.argv[2] === 'getpic'){
+        try{ 
+            console.log('got'); 
+            var picgetter = new GetPic('sdr.jpg');
+            console.log('git');
+            picgetter.getpic();
+            console.log('picture got');
+        }
+        catch(xp){
+            console.log('failed to get picture');
+        }
     } else {
         Logger.log(__filename, 'No argument entered. Starting server...', null, false);
 
