@@ -2,11 +2,13 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-var RequestRouter = require('./request-router.js');
+var RequestHandler = require('./request-handler');
 var Constants = require('./constants');
 var DataCreator = require('./db-data-creator');
 var Logger = require('./utils/logger');
-var GetPic = require('./getpic');
+var PicGetter = require('./pic-getter');
+var https = require('https');
+var fs = require('fs');
 
 function start() {
     var app = express();
@@ -25,27 +27,40 @@ function start() {
         var dataCreator = new DataCreator(50);
         dataCreator.createInfo();
     } else if(process.argv.length > 2 && process.argv[2] === 'getpic'){
-        try{ 
-            console.log('got'); 
-            var picgetter = new GetPic('sdr.jpg');
-            console.log('git');
-            picgetter.getpic();
-            console.log('picture got');
-        }
-        catch(xp){
-            console.log('failed to get picture');
-        }
+        Logger.log(__filename, 'in get pic', null, false);
+        var picGetter = new PicGetter('sdr.jpg');
+        picGetter.getPic(function(data) {
+            if (data) {
+                Logger.log(__filename, 'succesfully retrieved pic', null, true);
+                return;
+            }
+
+            Logger.log(__filename, 'failed to retrieve pic', null, true);
+        });
     } else {
         Logger.log(__filename, 'No argument entered. Starting server...', null, false);
 
         // gets
-        app.get(Constants.requestUrls.getAllUsers, RequestRouter.getAllUsers);
-        app.get(Constants.requestUrls.getAllCrops, RequestRouter.getAllCrops);
-        app.get(Constants.requestUrls.createData, RequestRouter.createData);
+        var requestHander = new RequestHandler();
+        app.get(Constants.requestUrls.getAllUsers, requestHander.getAllUsers);
+        app.get(Constants.requestUrls.getAllCrops, requestHander.getAllCrops);
+        app.get(Constants.requestUrls.createData, requestHander.createData);
 
         // posts
         //app.post('/save-user', handler.saveUser);
-        app.post(Constants.requestUrls.saveUser, RequestRouter.saveUser);
+        app.post(Constants.requestUrls.saveUser, requestHander.saveUser);
+
+
+        // define the server
+        //var key = fs.readFileSync(path.join(__dirname, '../keys/key.pem'));
+        //var certificate = fs.readFileSync(path.join(__dirname, '../keys/server.crt'));
+        //Logger.log(__filename, 'server key:', key, false);
+        //Logger.log(__filename, 'server certificate:', certificate, false);
+        //https.createServer({
+        //    key: key,
+        //    cert: certificate
+        //}, app).listen(9000);
+
         var server = app.listen(9000, function() {
             var host = server.address().address;
             var port = server.address().port;
