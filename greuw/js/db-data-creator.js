@@ -1,3 +1,5 @@
+'use strict';
+
 var path = require('path');
 var md5 = require('md5');
 var User = require('./models/user');

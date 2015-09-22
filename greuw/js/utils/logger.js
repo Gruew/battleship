@@ -4,7 +4,7 @@ var Logger = {
     log: function (filename, message, object, skipLine) {
 
         if (filename) {
-            message = path.basename(filename, '.js') + ' :: ' + message;
+            message = 'filename: ' + path.basename(filename, '.js') + ' :: ' + message;
         }
 
         if (skipLine) {

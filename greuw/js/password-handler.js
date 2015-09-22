@@ -1,6 +1,5 @@
-/**
- * Created by agreen on 3/27/15.
- */
+'use strict';
+
 var passwordHS = require('password-hash-and-salt');
 var crypto = require('crypto');
 

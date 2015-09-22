@@ -1,12 +1,13 @@
-/**
- * Created by agreen on 3/26/15.
- */
+'use strict';
+
 var SqlInterface = require('./sql-interface.js');
 var Constants = require('./constants');
 var User = require('./models/user');
 var JsonResponse = require('./models/json-response');
 var Logger = require('./utils/logger');
 var DbDataCreator = require('./db-data-creator');
+var PicGetter = require('./pic-getter');
+
 
 function RequestHandler() {
 
@@ -15,12 +16,12 @@ function RequestHandler() {
 RequestHandler.prototype.getAllUsers = function(req, res) {
     SqlInterface.getAllUsers(function(err, data) {
         var code;
-       if (err) {
-           Logger.log(__filename, 'Failed to process request:', err, true);
-           code = Constants.responseCodes.genericFailure;
-       } else {
-           code = Constants.responseCodes.genericSuccess;
-       }
+        if (err) {
+            Logger.log(__filename, 'Failed to process request:', err, true);
+            code = Constants.responseCodes.genericFailure;
+        } else {
+            code = Constants.responseCodes.genericSuccess;
+        }
 
         var jsonResponse = new JsonResponse(res, code, data, null);
         jsonResponse.respond();
@@ -47,7 +48,7 @@ RequestHandler.prototype.createData = function(req, res) {
     dbDataCreator.createInfo(function(err, data) {
         var code;
         if (err) {
-            Logger.log(__filename, 'Failed to process request:', err, true);
+            Logger.log(__filename, 'Failed to process create data request:', err, true);
             code = Constants.responseCodes.genericFailure;
         } else {
             code = Constants.responseCodes.genericSuccess;
@@ -55,6 +56,54 @@ RequestHandler.prototype.createData = function(req, res) {
 
         Logger.log(__filename, 'Finished creating data:', code, true);
         var jsonResponse = new JsonResponse(res, code, null, null);
+        jsonResponse.respond();
+    });
+};
+
+RequestHandler.prototype.getPic = function (req, res) {
+    if (!_.has(req.params, 'picName')) {
+        Logger.log(__filename, 'No picName parameter supplied to get pic url', null, true);
+        var jsonResponse = new JsonResponse(
+            res,
+            Constants.responseCodes.genericFailure,
+            null,
+            null
+        );
+        jsonResponse.respond();
+        return;
+    }
+
+    var picGetter = new PicGetter(req.param.picName);
+    picGetter.getPic(function(err, data) {
+        if (err) {
+            Logger.log(__filename,
+                'Error retrieving pic: ' + req.param.picName,
+                err,
+                true
+            );
+
+            var jsonResponse = new JsonResponse(
+                res,
+                Constants.responseCodes.genericFailure,
+                null,
+                null
+            );
+            jsonResponse.respond();
+            return;
+        }
+
+        Logger.log(__filename,
+            'Retrieving pic: ' + req.param.picName,
+            null,
+            true
+        );
+
+        var jsonResponse = new JsonResponse(
+            res,
+            Constants.responseCodes.genericSuccess,
+            null,
+            null
+        );
         jsonResponse.respond();
     });
 };
