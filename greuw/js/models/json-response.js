@@ -12,7 +12,7 @@ function JsonResponse(response, code, payload, options) {
     this.options = options;
 }
 
-JsonResponse.prototype. respond = function() {
+JsonResponse.prototype.respond = function() {
     this.response.append(
         Constants.httpConstants.contentType,
         Constants.httpConstants.typeJson

@@ -9,9 +9,7 @@ var DbDataCreator = require('./db-data-creator');
 var PicGetter = require('./pic-getter');
 
 
-function RequestHandler() {
-
-}
+function RequestHandler() {}
 
 RequestHandler.prototype.getAllUsers = function(req, res) {
     SqlInterface.getAllUsers(function(err, data) {
